@@ -8,11 +8,22 @@ using System.Threading.Tasks;
 
 namespace FlowerShop.Data.Domain.Models
 {
-    public class User: IdentityUser
+    public class ShopUser: IdentityUser
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
         [NotMapped]
         public string FullName => $"{FirstName} {LastName}";
+        public ShopUser() { }
+
+        public ShopUser(string login, string email, string lastName, string firstName,string phoneNamber)
+        {
+            FirstName=firstName;
+            LastName=lastName;
+            Email=email;
+            UserName = login;
+            PhoneNumber=phoneNamber;
+
+        }
     }
 }
