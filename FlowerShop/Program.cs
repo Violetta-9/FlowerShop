@@ -4,6 +4,8 @@ using FlowerShop.Application;
 using FlowerShop.Application.Configurations;
 using FlowerShop.Data.Domain.Models;
 using FlowerShop.Data.Share.DbContext;
+using FlowerShop.Helpers;
+using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -36,7 +38,7 @@ services.AddIdentity<ShopUser, IdentityRole>(options =>
 services.Configure<JwtSettings>(configurationRoot.GetSection(nameof(JwtSettings)));
 
 builder.Services.AddControllers();
-
+services.AddProblemDetails(x => x.Map<Exception>(opt => ExñeptionHelpers<Exception>.MapToProblemDetails(opt)));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 services.AddSwaggerGen(c =>
@@ -90,6 +92,8 @@ services.AddAuthentication(x =>
     };
 });
 
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -98,8 +102,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors(x => x
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
 
 app.UseHttpsRedirection();
+app.UseProblemDetails();
 app.UseAuthentication();
 app.UseRouting();
 app.UseAuthorization();
