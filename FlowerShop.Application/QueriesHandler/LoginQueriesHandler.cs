@@ -5,6 +5,7 @@ using System.Text;
 using FlowerShop.Application.Configurations;
 using FlowerShop.Application.Contracts.Outgoing;
 using FlowerShop.Application.Queries;
+using FlowerShop.Application.Resources;
 using FlowerShop.Data.Domain.Models;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -29,9 +30,8 @@ namespace FlowerShop.Application.QueriesHandler
             var checkPassword = await _userManager.CheckPasswordAsync(currentUser, request.User.Password);
             if (!checkPassword)
             {
-                //todo:
+                throw new ArgumentException(Message.InvalidPassword);
             }
-
             var userClaim =await GetUserClaimsAsync(currentUser);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
