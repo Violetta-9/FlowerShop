@@ -6,10 +6,12 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using FlowerShop.Application.PipelineBehaviors;
+using FlowerShop.Application.PostProcessor.Product;
 using FlowerShop.Application.Queries;
 using FlowerShop.Application.Validators.Queries.User.LoginUser;
 using FluentValidation;
 using MediatR;
+using MediatR.Pipeline;
 using Microsoft.AspNetCore.Identity;
 
 namespace FlowerShop.Application
@@ -22,6 +24,8 @@ namespace FlowerShop.Application
             serviceCollection.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
                 //serviceCollection.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             serviceCollection.AddScoped<IValidator<LoginUserQueries>, LoginUserValidator>();
+            //serviceCollection.AddTransient(typeof(IRequestPostProcessor<,>), typeof(AddProductPostProcessor));
+            //serviceCollection.AddMediatR(Assembly.GetExecutingAssembly());
         }
     }
 }
