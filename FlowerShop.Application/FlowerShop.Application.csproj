@@ -20,7 +20,9 @@
     <ProjectReference Include="..\FlowerShop.Application.Configurations\FlowerShop.Application.Configurations.csproj" />
     <ProjectReference Include="..\FlowerShop.Application.Contracts\FlowerShop.Application.Contracts.csproj" />
     <ProjectReference Include="..\FlowerShop.Application.Resources\FlowerShop.Application.Resources.csproj" />
+    <ProjectReference Include="..\FlowerShop.Application.Services\FlowerShop.Application.Services.csproj" />
     <ProjectReference Include="..\FlowerShop.Data.Domain\FlowerShop.Data.Domain.csproj" />
+    <ProjectReference Include="..\FlowerShop.Data.Share\FlowerShop.Data.Share.csproj" />
   </ItemGroup>
 
 </Project>
