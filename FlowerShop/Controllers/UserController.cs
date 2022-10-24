@@ -2,7 +2,7 @@
 using System.Security.Claims;
 using System.Text;
 using FlowerShop.Application.Command.User;
-using FlowerShop.Application.Contracts.Incoming;
+using FlowerShop.Application.Contracts.Incoming.User;
 using FlowerShop.Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
