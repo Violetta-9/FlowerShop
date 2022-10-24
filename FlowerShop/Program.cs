@@ -1,7 +1,9 @@
 using System.Reflection;
 using System.Text;
+using Azure.Storage.Blobs;
 using FlowerShop.Application;
 using FlowerShop.Application.Configurations;
+using FlowerShop.Application.Services;
 using FlowerShop.Data.Domain.Models;
 using FlowerShop.Data.Share.DbContext;
 using FlowerShop.Helpers;
@@ -36,8 +38,11 @@ services.AddIdentity<ShopUser, IdentityRole>(options =>
     .AddEntityFrameworkStores<FlowerShopDbContext>()
     .AddTokenProvider<DataProtectorTokenProvider<ShopUser>>(TokenOptions.DefaultProvider);
 services.Configure<JwtSettings>(configurationRoot.GetSection(nameof(JwtSettings)));
-
+services.Configure<BlobStorageSettings>(configurationRoot.GetSection(nameof(BlobStorageSettings)));
 builder.Services.AddControllers();
+services.AddSingleton<BlobStorageSettings>(new BlobStorageSettings());
+services.AddSingleton(x => new BlobServiceClient(configurationRoot.GetConnectionString("BlobStorageConnection")));
+services.AddApplicationServices();
 services.AddProblemDetails(x => x.Map<Exception>(opt => ExñeptionHelpers<Exception>.MapToProblemDetails(opt)));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
