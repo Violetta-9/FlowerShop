@@ -40,7 +40,7 @@ services.AddIdentity<ShopUser, IdentityRole>(options =>
 services.Configure<JwtSettings>(configurationRoot.GetSection(nameof(JwtSettings)));
 services.Configure<BlobStorageSettings>(configurationRoot.GetSection(nameof(BlobStorageSettings)));
 builder.Services.AddControllers();
-services.AddSingleton<BlobStorageSettings>(new BlobStorageSettings());
+
 services.AddSingleton(x => new BlobServiceClient(configurationRoot.GetConnectionString("BlobStorageConnection")));
 services.AddApplicationServices();
 services.AddProblemDetails(x => x.Map<Exception>(opt => ExñeptionHelpers<Exception>.MapToProblemDetails(opt)));
