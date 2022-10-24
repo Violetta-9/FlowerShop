@@ -12,7 +12,7 @@ namespace FlowerShop.Application.Contracts.Incoming.Product
         public string Title { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
-        public long? ProductId { get; set; }
+        public long? ProductCategoryId { get; set; }
        
     }
 }
