@@ -120,6 +120,18 @@
   <data name="InvalidPassword" xml:space="preserve">
     <value>Не верный пароль. Попробуйте еще раз</value>
   </data>
+  <data name="MaxImageLength" xml:space="preserve">
+    <value>Количество изображений не должно превышать 3 штуки </value>
+  </data>
+  <data name="MinImageLength" xml:space="preserve">
+    <value>Должно быть хотя бы одно изображение</value>
+  </data>
+  <data name="NotUniqueFiles" xml:space="preserve">
+    <value>Файлы не должны совпадать</value>
+  </data>
+  <data name="NotValidFile" xml:space="preserve">
+    <value>Файл  должен содержать изображение </value>
+  </data>
   <data name="UserNotFound" xml:space="preserve">
     <value>Пользователя с логином '{0}' не найден</value>
   </data>

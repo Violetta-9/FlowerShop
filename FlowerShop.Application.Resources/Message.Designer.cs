@@ -70,6 +70,42 @@ namespace FlowerShop.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Количество изображений не должно превышать 3 штуки .
+        /// </summary>
+        public static string MaxImageLength {
+            get {
+                return ResourceManager.GetString("MaxImageLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Должно быть хотя бы одно изображение.
+        /// </summary>
+        public static string MinImageLength {
+            get {
+                return ResourceManager.GetString("MinImageLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Файлы не должны совпадать.
+        /// </summary>
+        public static string NotUniqueFiles {
+            get {
+                return ResourceManager.GetString("NotUniqueFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Файл  должен содержать изображение .
+        /// </summary>
+        public static string NotValidFile {
+            get {
+                return ResourceManager.GetString("NotValidFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Пользователя с логином &apos;{0}&apos; не найден.
         /// </summary>
         public static string UserNotFound {
