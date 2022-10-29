@@ -23,10 +23,19 @@ namespace FlowerShop.Application
         public static void AddApplication(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddMediatR(Assembly.GetExecutingAssembly());
+            
+            // serviceCollection.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            AssemblyScanner.FindValidatorsInAssembly(typeof(ServiceCollectionExtentions).Assembly)
+                .ForEach(item => serviceCollection.AddScoped(item.InterfaceType, item.ValidatorType));
             serviceCollection.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
-                //serviceCollection.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-            serviceCollection.AddScoped<IValidator<LoginUserQueries>, LoginUserValidator>();
-            serviceCollection.AddScoped<IValidator<AddProductCommand>, AddProductValidator>();
+            //serviceCollection.AddScoped<IValidator<LoginUserQueries>, LoginUserValidator>();
+            //serviceCollection.AddScoped<IValidator<AddProductCommand>, AddProductValidator>();
+
+            //serviceCollection.AddScoped<IValidator<AddProductCommand>, AddProductValidator>();
+            //serviceCollection.AddScoped<IValidator<AddProductCommand>, AddProductValidator>();
+            //serviceCollection.AddScoped<IValidator<AddProductCommand>, AddProductValidator>();
+            //serviceCollection.AddScoped<IValidator<AddProductCommand>, AddProductValidator>();
+            //serviceCollection.AddScoped<IValidator<AddProductCommand>, AddProductValidator>();
             //serviceCollection.AddTransient(typeof(IRequestPostProcessor<,>), typeof(AddProductPostProcessor));
             //serviceCollection.AddMediatR(Assembly.GetExecutingAssembly());
         }
