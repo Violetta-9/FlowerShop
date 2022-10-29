@@ -61,6 +61,33 @@ namespace FlowerShop.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Продукт не существует.
+        /// </summary>
+        public static string DoNotExsistProduct {
+            get {
+                return ResourceManager.GetString("DoNotExsistProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Категория продукта не существует.
+        /// </summary>
+        public static string DoNotExsistProductCategory {
+            get {
+                return ResourceManager.GetString("DoNotExsistProductCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изображение не существует.
+        /// </summary>
+        public static string DoNotExsistProductImage {
+            get {
+                return ResourceManager.GetString("DoNotExsistProductImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Не верный пароль. Попробуйте еще раз.
         /// </summary>
         public static string InvalidPassword {
