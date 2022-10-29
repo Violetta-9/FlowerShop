@@ -49,7 +49,7 @@ namespace FlowerShop.Application.PostProcessor.Product
                         ProductId = response
 
                     };
-                    await _db.ProductImages.AddAsync(productImage);
+                    await _db.ProductImages.AddAsync(productImage,cancellationToken);
                     await _db.SaveChangesAsync(cancellationToken);
                 }
                 catch (Exception ex)
