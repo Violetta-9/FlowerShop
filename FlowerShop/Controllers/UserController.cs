@@ -4,6 +4,9 @@ using System.Text;
 using FlowerShop.Application.Command.User;
 using FlowerShop.Application.Contracts.Incoming.User;
 using FlowerShop.Application.Queries;
+using FlowerShop.Application.Queries.FlowerProductCategory;
+using FlowerShop.Application.Queries.Product;
+using FlowerShop.Application.Queries.ProductImage;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -62,6 +65,79 @@ namespace FlowerShop.Controllers
 
             return Ok(result);
             
+        }
+        [HttpGet("{productId}")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(string))]
+        [SwaggerOperation(Summary = "GetImagesByProductId", OperationId = "GetImagesByProductId")]
+        public async Task<IActionResult> GetImagesByProductId([FromRoute] long productId)
+        {
+
+            var query = new GetProductImageByProductIdQueries(productId);
+
+            if (query == null)
+            {
+                throw new ArgumentNullException(nameof(query));
+            }
+
+            var result = await _mediator.Send(query);
+
+            if (result == null)
+            {
+                return NotFound(result);
+            }
+
+            return Ok(result);
+
+
+        }
+        [HttpGet("Get All Categories")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(string))]
+        [SwaggerOperation(Summary = "GetAllCategories", OperationId = "GetAllCategories")]
+        public async Task<IActionResult> GetAllCategories()
+        {
+            var query = new GetAllProductCategoriesQueries();
+
+            if (query == null)
+            {
+                throw new ArgumentNullException(nameof(query));
+            }
+
+            var result = await _mediator.Send(query);
+
+            if (result == null)
+            {
+                return NotFound(result);
+            }
+
+            return Ok(result);
+
+
+
+        }
+        
+        [HttpGet("{productCategoryId}")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(string))]
+        [SwaggerOperation(Summary = "GetProductByCategoryId", OperationId = "GetProductByCategoryId")]
+        public async Task<IActionResult> GetProductByCategoryId([FromRoute] long productCategoryId)
+        {
+            var query = new GetProductByCategoryIdQuery(productCategoryId);
+
+            if (query == null)
+            {
+                throw new ArgumentNullException(nameof(query));
+            }
+
+            var result = await _mediator.Send(query);
+
+            if (result == null)
+            {
+                return NotFound(result);
+            }
+
+            return Ok(result);
+
+
+
         }
     }
 
