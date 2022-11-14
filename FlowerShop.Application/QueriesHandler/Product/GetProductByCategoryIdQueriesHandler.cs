@@ -24,7 +24,7 @@ namespace FlowerShop.Application.QueriesHandler.Product
             var product = await _db.Products.Where(x => x.ProductCategoryId == request.CategoryId && !x.IsHidden)
                 .ToArrayAsync(cancellationToken);
             return product.Select(x => new ProductDTO()
-                { Description = x.Description, Title = x.Title, Price = x.Price }).ToArray();
+                { Description = x.Description, Title = x.Title, Price = x.Price,Id=x.Id }).ToArray();
         }
     }
 }

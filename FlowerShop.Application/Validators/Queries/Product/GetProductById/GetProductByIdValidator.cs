@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FlowerShop.Application.Queries.ProductImage;
+using FlowerShop.Application.Queries.Product;
 using FlowerShop.Application.Resources;
 using FlowerShop.Data.Share.DbContext;
 using FluentValidation;
 
-namespace FlowerShop.Application.Validators.Queries.ProductImage.GetProductImageByProductId
+namespace FlowerShop.Application.Validators.Queries.Product.GetProductById
 {
-    public class GetProductImageByProductIdValidator:AbstractValidator<GetProductImageByProductIdQueries>
+    public class GetProductByIdValidator:AbstractValidator<GetProductByIdQuery>
     {
         private readonly FlowerShopDbContext _db;
-        public GetProductImageByProductIdValidator(FlowerShopDbContext db)
+        public GetProductByIdValidator(FlowerShopDbContext db)
         {
             _db = db;
             CreateRules();
@@ -21,10 +21,10 @@ namespace FlowerShop.Application.Validators.Queries.ProductImage.GetProductImage
 
         private void CreateRules()
         {
-            RuleFor(x => x.ProductId)
+            RuleFor(x => x.Id)
                 .Cascade(CascadeMode.Stop)
                 .Must(IsExsistProduct)
-                .WithMessage(Message.DoNotExsistProduct);
+                .WithMessage(Message.DoNotExsistProductCategory);
         }
 
         private bool IsExsistProduct(long arg)

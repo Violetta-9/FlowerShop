@@ -12,8 +12,8 @@ namespace FlowerShop.Application.Command.Product
     public class AddProductCommand:IRequest<long>
     {
         public AddProductDTO Product { get; set; }
-        public IFormFile[] Files;
-        public AddProductCommand(AddProductDTO product,IFormFile[] files)
+        public IFormFileCollection Files;
+        public AddProductCommand(AddProductDTO product, IFormFileCollection files)
         {
             Product=product;
             Files=files;

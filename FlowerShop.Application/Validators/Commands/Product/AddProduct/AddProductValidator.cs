@@ -35,28 +35,28 @@ namespace FlowerShop.Application.Validators.Commands.Product.AddProduct
         }
         
 
-        private bool IsUniqueImage(IFormFile[] arg)
+        private bool IsUniqueImage(IFormFileCollection arg)
         {
             var g = arg.Count();
             var f = arg.Select(x => x.FileName).Distinct().Count();
-            return arg.Length == arg.Select(x=>x.FileName).Distinct().Count();
+            return arg.Count == arg.Select(x=>x.FileName).Distinct().Count();
         }
 
-        private bool IsImageType(IFormFile[] arg)
+        private bool IsImageType(IFormFileCollection arg)
         {
             return arg.All(x => x.ContentType.Contains("image"));
         }
 
-        private bool MaxLengthOfImage(IFormFile[] arg)
+        private bool MaxLengthOfImage(IFormFileCollection arg)
         {
-            return (arg.Length <=3) ? true : false;
+            return (arg.Count <=3) ? true : false;
 
         }
 
-        private bool MinLengthofImage(IFormFile[] arg)
+        private bool MinLengthofImage(IFormFileCollection arg)
         {
-            
-            return (arg.Length > 0) ? true : false;
+
+            return arg.Any();
         }
        
     }

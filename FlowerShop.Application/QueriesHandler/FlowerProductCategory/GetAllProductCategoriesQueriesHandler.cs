@@ -24,7 +24,7 @@ namespace FlowerShop.Application.QueriesHandler.FlowerProductCategory
         {
             var listOfCategories = await _db.ProductCategories.ToArrayAsync(cancellationToken);
 
-            return listOfCategories.Select(x => new CategoriesDTO() { Description = x.Description, Title = x.Title }).ToArray();
+            return listOfCategories.Select(x => new CategoriesDTO() { Description = x.Description, Title = x.Title, Id = x.Id}).ToArray();
         }
     }
 }
