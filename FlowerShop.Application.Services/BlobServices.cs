@@ -31,7 +31,8 @@ namespace FlowerShop.Application.Services
             return new BlobDTO
             {
                 DownLoadStream = blobs.Value.Content,
-                TypeOfContent = blobs.Value.ContentType
+                TypeOfContent = blobs.Value.ContentType,
+                AbsoluteUri = blobClient.Uri.AbsoluteUri,
             };
         }
 
@@ -45,6 +46,7 @@ namespace FlowerShop.Application.Services
         private async Task<BlobClient> GetBlobContainerClient(string containerName,string path)
         {
             var client = _blobService.GetBlobContainerClient(containerName);
+
             await client.CreateIfNotExistsAsync();
             return client.GetBlobClient(path);
             
