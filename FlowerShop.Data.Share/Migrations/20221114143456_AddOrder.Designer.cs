@@ -3,6 +3,7 @@ using System;
 using FlowerShop.Data.Share.DbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FlowerShop.Data.Share.Migrations
 {
     [DbContext(typeof(FlowerShopDbContext))]
-    partial class FlowerShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221114143456_AddOrder")]
+    partial class AddOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,7 +49,7 @@ namespace FlowerShop.Data.Share.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductOrders", (string)null);
+                    b.ToTable("ProductOrders");
                 });
 
             modelBuilder.Entity("FlowerShop.Data.Domain.Models.Product", b =>
@@ -79,7 +81,7 @@ namespace FlowerShop.Data.Share.Migrations
 
                     b.HasIndex("ProductCategoryId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("FlowerShop.Data.Domain.Models.ProductCategory", b =>
@@ -100,7 +102,7 @@ namespace FlowerShop.Data.Share.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductCategories", (string)null);
+                    b.ToTable("ProductCategories");
                 });
 
             modelBuilder.Entity("FlowerShop.Data.Domain.Models.ProductImage", b =>
@@ -130,7 +132,7 @@ namespace FlowerShop.Data.Share.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductImages", (string)null);
+                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("FlowerShop.Data.Domain.Models.ShopUser", b =>
