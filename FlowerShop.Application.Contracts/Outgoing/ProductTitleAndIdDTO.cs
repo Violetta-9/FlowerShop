@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace FlowerShop.Application.Contracts.Outgoing
 {
-    public class CategoriesDTO
+    public class ProductTitleAndIdDTO
     {
-        public long Id { get; set; }
+        public long ProductId { get; set; }
         public string Title { get; set; }
-        public string Description { get; set; }
-      
     }
 }

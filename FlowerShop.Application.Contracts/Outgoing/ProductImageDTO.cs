@@ -8,6 +8,7 @@ namespace FlowerShop.Application.Contracts.Outgoing
 {
     public class ProductImageDTO
     {
-        public string Path { get; set; }
+        public string FileName { get; set; }
+        public string AbsoluteUri { get; set; }
     }
 }

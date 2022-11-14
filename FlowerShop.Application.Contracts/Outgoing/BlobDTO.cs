@@ -10,6 +10,6 @@ namespace FlowerShop.Application.Contracts.Outgoing
     {
         public Stream DownLoadStream { get; set; }
         public string TypeOfContent { get; set; }
-        
+        public string AbsoluteUri { get; set; }
     }
 }
