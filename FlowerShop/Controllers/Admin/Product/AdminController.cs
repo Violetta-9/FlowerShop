@@ -3,6 +3,7 @@ using FlowerShop.Application.Command.ProductImage;
 using FlowerShop.Application.Configurations.User;
 using FlowerShop.Application.Contracts.Incoming.Product;
 using FlowerShop.Application.Contracts.Incoming.User;
+using FlowerShop.Application.Contracts.Outgoing;
 using FlowerShop.Application.Queries;
 using FlowerShop.Application.Queries.FlowerProductCategory;
 using FlowerShop.Application.Queries.Product;
@@ -29,7 +30,7 @@ namespace FlowerShop.Controllers.Admin.Product
         [HttpPost("Add product")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(string))]
         [SwaggerOperation(Summary = "AddProduct", OperationId = "AddProduct")]
-        public async Task<IActionResult> AddProduct([FromForm] AddProductDTO product, [FromForm] IFormFile[] images)
+        public async Task<IActionResult> AddProduct([FromForm] AddProductDTO product, [FromForm] IFormFileCollection images)
         {
 
             var query = new AddProductCommand(product, images);
@@ -95,9 +96,33 @@ namespace FlowerShop.Controllers.Admin.Product
             return Ok(result);
 
         }
-       
-        
-       
+        [HttpGet("{productId}")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ProductDTO))]
+        [SwaggerOperation(Summary = "GetProductById", OperationId = "GetProductById")]
+        public async Task<IActionResult> GetProductById([FromRoute] long productId)
+        {
+            var query = new GetProductByIdQuery(productId);
+
+            if (query == null)
+            {
+                throw new ArgumentNullException(nameof(query));
+            }
+
+            var result = await _mediator.Send(query);
+
+            if (result == null)
+            {
+                return NotFound(result);
+            }
+
+            return Ok(result);
+
+
+
+        }
+
+
+
 
 
 
