@@ -3,6 +3,7 @@ using System;
 using FlowerShop.Data.Share.DbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FlowerShop.Data.Share.Migrations
 {
     [DbContext(typeof(FlowerShopDbContext))]
-    partial class FlowerShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221116144047_AddFieldAddresToOrders")]
+    partial class AddFieldAddresToOrders
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

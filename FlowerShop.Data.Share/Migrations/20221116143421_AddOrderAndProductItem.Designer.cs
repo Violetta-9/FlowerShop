@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FlowerShop.Data.Share.Migrations
 {
     [DbContext(typeof(FlowerShopDbContext))]
-    [Migration("20221114143456_AddOrder")]
-    partial class AddOrder
+    [Migration("20221116143421_AddOrderAndProductItem")]
+    partial class AddOrderAndProductItem
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,11 +32,11 @@ namespace FlowerShop.Data.Share.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("FlowerId")
-                        .HasColumnType("bigint");
-
                     b.Property<bool>("IsCompleted")
                         .HasColumnType("boolean");
+
+                    b.Property<int>("Quentity")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("TimeOfOrder")
                         .HasColumnType("timestamp with time zone");
@@ -44,10 +44,13 @@ namespace FlowerShop.Data.Share.Migrations
                     b.Property<double>("TotalPrice")
                         .HasColumnType("double precision");
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("ProductOrders");
                 });
@@ -133,6 +136,38 @@ namespace FlowerShop.Data.Share.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductImages");
+                });
+
+            modelBuilder.Entity("FlowerShop.Data.Domain.Models.ProductItem", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<long?>("OrderId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ProductId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("Quentity")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ProductsItem");
                 });
 
             modelBuilder.Entity("FlowerShop.Data.Domain.Models.ShopUser", b =>
@@ -343,6 +378,17 @@ namespace FlowerShop.Data.Share.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("FlowerShop.Data.Domain.Models.Order", b =>
+                {
+                    b.HasOne("FlowerShop.Data.Domain.Models.ShopUser", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("FlowerShop.Data.Domain.Models.Product", b =>
                 {
                     b.HasOne("FlowerShop.Data.Domain.Models.ProductCategory", "ProductCategories")
@@ -361,6 +407,31 @@ namespace FlowerShop.Data.Share.Migrations
                         .IsRequired();
 
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("FlowerShop.Data.Domain.Models.ProductItem", b =>
+                {
+                    b.HasOne("FlowerShop.Data.Domain.Models.Order", "Order")
+                        .WithMany("ProductsList")
+                        .HasForeignKey("OrderId");
+
+                    b.HasOne("FlowerShop.Data.Domain.Models.Product", "Product")
+                        .WithMany("ProductList")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FlowerShop.Data.Domain.Models.ShopUser", "User")
+                        .WithMany("ProductsList")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -414,14 +485,28 @@ namespace FlowerShop.Data.Share.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("FlowerShop.Data.Domain.Models.Order", b =>
+                {
+                    b.Navigation("ProductsList");
+                });
+
             modelBuilder.Entity("FlowerShop.Data.Domain.Models.Product", b =>
                 {
                     b.Navigation("ProductImages");
+
+                    b.Navigation("ProductList");
                 });
 
             modelBuilder.Entity("FlowerShop.Data.Domain.Models.ProductCategory", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("FlowerShop.Data.Domain.Models.ShopUser", b =>
+                {
+                    b.Navigation("Orders");
+
+                    b.Navigation("ProductsList");
                 });
 #pragma warning restore 612, 618
         }

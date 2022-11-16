@@ -16,7 +16,13 @@ namespace FlowerShop.Data.Share.MappingConfigurations
         {
             builder.MapKeyPrimary();
             builder.Property(x => x.UserId).HasColumnName(nameof(Order.UserId)).IsRequired();
-            builder.Property(x => x.FlowerId).HasColumnName(nameof(Order.FlowerId)).IsRequired();
+            builder.Property(x => x.TotalPrice).HasColumnName(nameof(Order.TotalPrice)).IsRequired();
+            builder.Property(x => x.Address).HasColumnName(nameof(Order.Address)).IsRequired();
+            builder.Property(x => x.Quentity).HasColumnName(nameof(Order.Quentity)).IsRequired();
+            builder.Property(x => x.TimeOfOrder).HasColumnName(nameof(Order.TimeOfOrder)).IsRequired();
+            builder.HasOne(x => x.User).WithMany(x => x.Orders);
+            builder.HasMany(x => x.ProductsList).WithOne(x => x.Order);
+
         }
     }
 }

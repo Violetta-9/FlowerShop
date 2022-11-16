@@ -14,6 +14,7 @@ namespace FlowerShop.Data.Share.DbContext
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Order> ProductOrders { get; set; }
+        public DbSet<ProductItem> ProductsItem { get; set; }
 
         public FlowerShopDbContext(DbContextOptions options) : base(options)
         {
