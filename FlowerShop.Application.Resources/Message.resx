@@ -129,6 +129,9 @@
   <data name="InvalidPassword" xml:space="preserve">
     <value>Не верный пароль. Попробуйте еще раз</value>
   </data>
+  <data name="LoginAlreadyExists" xml:space="preserve">
+    <value>Логин уже существует</value>
+  </data>
   <data name="MaxImageLength" xml:space="preserve">
     <value>Количество изображений не должно превышать 3 штуки </value>
   </data>

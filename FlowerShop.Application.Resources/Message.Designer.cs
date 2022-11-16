@@ -97,6 +97,15 @@ namespace FlowerShop.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Логин уже существует.
+        /// </summary>
+        public static string LoginAlreadyExists {
+            get {
+                return ResourceManager.GetString("LoginAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Количество изображений не должно превышать 3 штуки .
         /// </summary>
         public static string MaxImageLength {
