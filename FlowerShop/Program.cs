@@ -40,6 +40,7 @@ services.AddIdentity<ShopUser, IdentityRole>(options =>
 services.Configure<JwtSettings>(configurationRoot.GetSection(nameof(JwtSettings)));
 services.Configure<BlobStorageSettings>(configurationRoot.GetSection(nameof(BlobStorageSettings)));
 builder.Services.AddControllers();
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 services.AddSingleton(x => new BlobServiceClient(configurationRoot.GetConnectionString("BlobStorageConnection")));
 services.AddApplicationServices();
