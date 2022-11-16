@@ -16,5 +16,6 @@ namespace FlowerShop.Data.Domain.Models
         public long? ProductCategoryId { get; set; }
         public virtual ProductCategory ProductCategories { get; set; }
         public virtual ICollection<ProductImage> ProductImages { get; set; }
+        public virtual ICollection<ProductItem> ProductList { get; set; }
     }
 }

@@ -7,15 +7,14 @@ using FlowerShop.Data.Domain.Models.Abstractions;
 
 namespace FlowerShop.Data.Domain.Models
 {
-    public  class Order: PrimaryKey
+    public class ProductItem:PrimaryKey
     {
         public string UserId { get; set; }
+        public long ProductId { get; set; }
+        public long? OrderId { get; set; }
         public int Quentity { get; set; }
-        public double TotalPrice { get; set; }
-        public string Address { get; set; }
-        public DateTime TimeOfOrder { get; set; }
-        public bool IsCompleted { get; set; } = false;
+        public virtual Order Order { get; set; }
+        public virtual Product Product { get; set; }
         public virtual ShopUser User { get; set; }
-        public virtual ICollection<ProductItem> ProductsList { get; set; }
     }
 }

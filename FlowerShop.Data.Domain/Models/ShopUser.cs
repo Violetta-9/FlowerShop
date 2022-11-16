@@ -14,6 +14,8 @@ namespace FlowerShop.Data.Domain.Models
         public string LastName { get; set; }
         [NotMapped]
         public string FullName => $"{FirstName} {LastName}";
+        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<ProductItem> ProductsList { get; set; }
         public ShopUser() { }
 
         public ShopUser(string login, string email, string lastName, string firstName,string phoneNamber)
