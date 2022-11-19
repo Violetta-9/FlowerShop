@@ -1,4 +1,5 @@
-﻿using FlowerShop.Application.Configurations.User;
+﻿using FlowerShop.Application.Command.Order.CompleadOrder;
+using FlowerShop.Application.Configurations.User;
 using FlowerShop.Application.Contracts.Outgoing;
 using FlowerShop.Application.Queries.FlowerOrders.GetAllOrdersQuery;
 using MediatR;
@@ -20,11 +21,33 @@ namespace FlowerShop.Controllers.Admin.Order
 
         }
         [HttpPost("Get All Orders")]
-        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(OrdersDTO))]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(OrdersDTO[]))]
         [SwaggerOperation(Summary = "GetAllOrders", OperationId = "GetAllOrders")]
-        public async Task<IActionResult> GetAllOrders()
+        public async Task<IActionResult> GetAllOrders([FromBody] bool IsComleated)
         {
-            var query = new GetAllOrdersQuery();
+            var query = new GetAllOrdersQuery(IsComleated);
+
+            if (query == null)
+            {
+                throw new ArgumentNullException(nameof(query));
+            }
+
+            var result = await _mediator.Send(query);
+
+            if (result == null)
+            {
+                return NotFound(result);
+            }
+
+            return Ok(result);
+
+        }
+        [HttpPost("Completed Order")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(OrdersDTO))]
+        [SwaggerOperation(Summary = "CompetedOrders", OperationId = "CompletedOrders")]
+        public async Task<IActionResult> CompletedOrder([FromBody] long orderId)
+        {
+            var query = new CompletedOrderCommand(orderId);
 
             if (query == null)
             {
