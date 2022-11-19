@@ -10,5 +10,10 @@ namespace FlowerShop.Application.Queries.FlowerOrders.GetAllOrdersQuery
 {
     public  class GetAllOrdersQuery:IRequest<IEnumerable<OrdersDTO>>
     {
+        public bool IsCompleated { get; set; }
+        public GetAllOrdersQuery(bool isCompleated)
+        {
+            IsCompleated = isCompleated;
+        }
     }
 }
