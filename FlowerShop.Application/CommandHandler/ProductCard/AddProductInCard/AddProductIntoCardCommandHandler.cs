@@ -9,6 +9,7 @@ using FlowerShop.Data.Domain.Models;
 using FlowerShop.Data.Share.DbContext;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace FlowerShop.Application.CommandHandler.ProductCard.AddProductInCard
 {
@@ -25,6 +26,15 @@ namespace FlowerShop.Application.CommandHandler.ProductCard.AddProductInCard
         public async Task<Response> Handle(AddProductInCardCommand request, CancellationToken cancellationToken)
         {
             var currentUser = await _userManager.FindByNameAsync(request.newProduct.UserName);
+            var exists = _db.ProductsItem.Where(x =>
+                x.ProductId == request.newProduct.ProductId && x.UserId == currentUser.Id && x.OrderId == null);
+            if (exists.Any())
+            {
+              var changeProduct= await exists.SingleOrDefaultAsync(cancellationToken);
+              changeProduct.Quentity += 1;
+              await _db.SaveChangesAsync(cancellationToken);
+              return Response.Success;
+            }
             var productInCard = new ProductItem()
             {
                 ProductId = request.newProduct.ProductId,
