@@ -11,6 +11,7 @@ namespace FlowerShop.Application.Command.Order.MakeOrder
     {
         public string UserName { get; set; }
         public string Address { get; set; }
+
         public MakeOrderCommand(string userName, string address)
         {
             UserName = userName;
