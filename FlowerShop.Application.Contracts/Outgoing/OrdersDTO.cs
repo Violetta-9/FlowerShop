@@ -8,6 +8,7 @@ namespace FlowerShop.Application.Contracts.Outgoing
 {
     public  class OrdersDTO
     {
+        public long OrderId { get; set; }
         public string UserAdress { get; set; }
         public string[] FlowerTitle { get; set; }
         public string Phone { get; set; }

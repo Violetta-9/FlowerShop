@@ -12,6 +12,7 @@ namespace FlowerShop.Application.Contracts.Outgoing
         public string Title { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
+        public int Quentity { get; set; }
         public long? ProductCategoryId { get; set; }
     }
 }
