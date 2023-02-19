@@ -56,7 +56,7 @@ namespace FlowerShop.Application.QueriesHandler
             claimsList.AddRange(roles.Select(x=>new Claim(ClaimTypes.Role,x)));
             if (!string.IsNullOrWhiteSpace(user.PhoneNumber))
             {
-                claimsList.Add(new(ClaimTypes.MobilePhone, user.PhoneNumber));
+                claimsList.Add(new Claim("MobilePhon", user.PhoneNumber));
             }
             return claimsList;
         }

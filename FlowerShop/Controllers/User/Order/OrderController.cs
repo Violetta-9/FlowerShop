@@ -3,6 +3,7 @@ using FlowerShop.Application.Contracts.Outgoing;
 using FlowerShop.Application.Queries.Product;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Any;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace FlowerShop.Controllers.User.Order
@@ -18,7 +19,7 @@ namespace FlowerShop.Controllers.User.Order
             _mediator = mediator;
         }
         [HttpPost]
-        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(Response))]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(long))]
         [SwaggerOperation(Summary = "MakeOrder", OperationId = "MakeOrder")]
         public async Task<IActionResult> MakeOrder([FromForm] string userName, [FromForm]string address)
         {

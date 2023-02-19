@@ -73,7 +73,7 @@ namespace FlowerShop.Controllers.User.ProductInCard
 
         }
         [HttpPut("Change quantity for product in card")]
-        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(Response))]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(int))]
         [SwaggerOperation(Summary = "ChangeQuantity", OperationId = "ChangeQuantity")]
         public async Task<IActionResult> ChangeQuantity([FromForm] string userName, [FromForm] long productId,[FromForm] int quentity)
         {

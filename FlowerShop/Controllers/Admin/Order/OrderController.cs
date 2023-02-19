@@ -43,7 +43,7 @@ namespace FlowerShop.Controllers.Admin.Order
 
         }
         [HttpPost("Completed Order")]
-        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(OrdersDTO))]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(Response))]
         [SwaggerOperation(Summary = "CompetedOrders", OperationId = "CompletedOrders")]
         public async Task<IActionResult> CompletedOrder([FromBody] long orderId)
         {

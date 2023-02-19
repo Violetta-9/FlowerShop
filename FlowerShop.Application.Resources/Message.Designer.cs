@@ -142,6 +142,15 @@ namespace FlowerShop.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Продукт с таким названием уже существует.
+        /// </summary>
+        public static string ProductExsict {
+            get {
+                return ResourceManager.GetString("ProductExsict", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Пользователя с логином &apos;{0}&apos; не найден.
         /// </summary>
         public static string UserNotFound {

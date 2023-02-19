@@ -144,6 +144,9 @@
   <data name="NotValidFile" xml:space="preserve">
     <value>Файл  должен содержать изображение </value>
   </data>
+  <data name="ProductExsict" xml:space="preserve">
+    <value>Продукт с таким названием уже существует</value>
+  </data>
   <data name="UserNotFound" xml:space="preserve">
     <value>Пользователя с логином '{0}' не найден</value>
   </data>

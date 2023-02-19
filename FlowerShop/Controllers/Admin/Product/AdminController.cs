@@ -1,13 +1,8 @@
 ﻿using FlowerShop.Application.Command.Product;
-using FlowerShop.Application.Command.ProductImage;
 using FlowerShop.Application.Configurations.User;
 using FlowerShop.Application.Contracts.Incoming.Product;
-using FlowerShop.Application.Contracts.Incoming.User;
 using FlowerShop.Application.Contracts.Outgoing;
-using FlowerShop.Application.Queries;
-using FlowerShop.Application.Queries.FlowerProductCategory;
 using FlowerShop.Application.Queries.Product;
-using FlowerShop.Application.Queries.ProductImage;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +23,7 @@ namespace FlowerShop.Controllers.Admin.Product
         }
 
         [HttpPost("Add product")]
-        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(string))]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(long))]
         [SwaggerOperation(Summary = "AddProduct", OperationId = "AddProduct")]
         public async Task<IActionResult> AddProduct([FromForm] AddProductDTO product, [FromForm] IFormFileCollection images)
         {
@@ -51,7 +46,7 @@ namespace FlowerShop.Controllers.Admin.Product
 
         }
         [HttpDelete("{productId}")]
-        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(string))]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(Response))]
         [SwaggerOperation(Summary = "DeleteProduct", OperationId = "DeleteProduct")]
         public async Task<IActionResult> DeleteProduct([FromRoute] long productId)
         {
@@ -75,7 +70,7 @@ namespace FlowerShop.Controllers.Admin.Product
         }
 
         [HttpPut("{productId}")]
-        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(string))]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(long))]
         [SwaggerOperation(Summary = "UpdateProduct", OperationId = "UpdateProduct")]
         public async Task<IActionResult> UpdateProduct([FromForm] AddProductDTO product, [FromRoute] long productId)
         {
